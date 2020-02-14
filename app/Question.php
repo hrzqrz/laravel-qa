@@ -7,7 +7,18 @@ use Illuminate\Database\Eloquent\Model;
 class Question extends Model
 {
   protected $fillable = ['title', 'body'];
-    public function user(){
-      return $this->blongTo(User::class);
+    public function user()
+    {
+      return $this->belongsTo(User::class);
+    }
+
+    public function getUrlAttribute()
+    {
+      return route('questions.show', $this->id);
+    }
+
+    public function getCreatedDateAttribute()
+    {
+      return $this->created_at->diffForHumans();
     }
 }
