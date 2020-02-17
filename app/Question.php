@@ -18,4 +18,27 @@ class Question extends Model
         $this->attributes['title'] = $value;
         $this->attributes['slug'] = str_slug($value);
     }
+
+    public function getUrlAttribute()
+    {
+      return route('questions.show', $this->id);
+    }
+
+    public function getCreatedDateAttribute()
+    {
+      return $this->created_at->diffForHumans();
+    }
+
+    // an accessor always start with get and ends with attribute
+    public function getSatusAttribute()
+    {
+      if ($this->answers > 0 ) {
+        if ($this->best_answer_id) {
+          return "answer-accepted";
+        }
+        return "answered";
+      }
+
+      return "unanswered";
+    }
 }

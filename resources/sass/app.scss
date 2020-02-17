@@ -25,10 +25,11 @@
   .vote, .answer{
     width: 60px;
     height: 60px;
+
   }
 
   .status{
-    // calss = "status unanswered"
+    
     &.unanswered {
       border: none;
     }
@@ -40,7 +41,12 @@
 
     &.answer-accepted{
       background: $green;
-      color: $color-white;
+      color: $white;
     }
   }
+
+  .view{
+    margin-top: 10px;
+  }
+
 }
