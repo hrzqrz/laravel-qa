@@ -28,8 +28,8 @@
 
   }
 
-  .status{
-    
+   .status{
+
     &.unanswered {
       border: none;
     }
@@ -44,6 +44,8 @@
       color: $white;
     }
   }
+
+
 
   .view{
     margin-top: 10px;
