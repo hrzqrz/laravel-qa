@@ -38,11 +38,7 @@ class QuestionsController extends Controller
      */
     public function store(AskQuestionRequest $request)
     {
-        /* to save the question because question is belong to user 
-            or created by user so we can get the current user by 
-            calling $request->user() and then call questions method 
-            to obtain an instance of our relation method 
-        */ 
+        
         $request->user()->questions()->create($request->only('title', 'body'));
         return redirect()->route('questions.index')->with('success', 'Yuor question has been submutted.');
     }
@@ -66,7 +62,7 @@ class QuestionsController extends Controller
      */
     public function edit(Question $question)
     {
-        //
+        return view('questions.edit')->with('question', $question);
     }
 
     /**
@@ -76,9 +72,10 @@ class QuestionsController extends Controller
      * @param  \App\Question  $question
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Question $question)
+    public function update(AskQuestionRequest $request, Question $question)
     {
-        //
+        $question->update($request->only('title', 'body'));
+        return redirect()->route('questions.index')->with('success', 'Your question updated successfully.');
     }
 
     /**
