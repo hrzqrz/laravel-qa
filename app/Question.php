@@ -9,8 +9,15 @@ class Question extends Model
 {
   protected $fillable = ['title', 'body'];
 
+    // Relationship between Queston model and User
     public function user() {
         return $this->belongsTo(User::class);
+    }
+
+    //Relationship between Question model and Answer
+    public function answers()
+    {
+      return $this->hasMany(Answer::class);
     }
 
     public function setTitleAttribute($value)
@@ -37,7 +44,7 @@ class Question extends Model
     // an accessor always start with get and ends with attribute
     public function getSatusAttribute()
     {
-      if ($this->answers > 0 ) {
+      if ($this->answers_count > 0 ) {
         if ($this->best_answer_id) {
           return "answer-accepted";
         }
